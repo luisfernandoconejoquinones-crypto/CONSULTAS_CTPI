@@ -1,0 +1,38 @@
+
+from flask import Flask
+from pymongo import MongoClient
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+app = Flask(__name__)
+
+
+cliente = MongoClient(os.getenv("MONGO_URI"))
+
+
+db = cliente["CURSOS_CTPI_2026-FERNANDO"]
+
+
+aprendices = db["APRENDICES_CONEJO"]
+
+
+app.config["aprendices"] = aprendices
+
+from routes.cantidad_aprendices import cantidad_bp
+
+app.register_blueprint(cantidad_bp)
+
+
+@app.route("/")
+def inicio():
+    try:
+        cliente.admin.command("ping")
+        return "¡Conexion con MongoDB exitosa!"
+    except Exception as e:
+        return f"Error de conexion: {e}"
+
+
+if __name__ == "__main__":
+    app.run(debug=True)
