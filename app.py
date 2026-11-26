@@ -8,21 +8,17 @@ load_dotenv()
 
 app = Flask(__name__)
 
-
 cliente = MongoClient(os.getenv("MONGO_URI"))
 
-
 db = cliente["CURSOS_CTPI_2026-FERNANDO"]
-
-
 aprendices = db["APRENDICES_CONEJO"]
-
-
 app.config["aprendices"] = aprendices
 
 from routes.cantidad_aprendices import cantidad_bp
-
 app.register_blueprint(cantidad_bp)
+
+from routes.aprendices_por_nivel import nivel_bp
+app.register_blueprint(nivel_bp)
 
 
 @app.route("/")
