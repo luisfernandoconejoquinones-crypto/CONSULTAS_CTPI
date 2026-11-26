@@ -20,6 +20,9 @@ app.register_blueprint(cantidad_bp)
 from routes.aprendices_por_nivel import nivel_bp
 app.register_blueprint(nivel_bp)
 
+from routes.programas import programas_bp
+app.register_blueprint(programas_bp)
+
 
 @app.route("/")
 def inicio():
