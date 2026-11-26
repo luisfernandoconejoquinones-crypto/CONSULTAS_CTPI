@@ -42,6 +42,9 @@ app.register_blueprint(cantidad_power_bi_bp)
 from routes.aprendices_por_estado import estado_bp
 app.register_blueprint(estado_bp)
 
+from routes.programas_complementaria_virtual import complementaria_bp
+app.register_blueprint(complementaria_bp)
+
 @app.route("/")
 def inicio():
     try:
