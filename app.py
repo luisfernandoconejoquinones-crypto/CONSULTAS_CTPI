@@ -29,6 +29,9 @@ app.register_blueprint(certificados_bp)
 from routes.por_certificar import por_certificar_bp
 app.register_blueprint(por_certificar_bp)
 
+from routes.fichas_terminadas import fichas_terminadas_bp
+app.register_blueprint(fichas_terminadas_bp)
+
 
 @app.route("/")
 def inicio():
